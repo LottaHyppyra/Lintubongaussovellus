@@ -5,16 +5,16 @@
 <p>
 {% if session.user_id %}
 Käyttäjänimi: {{ session.user_name }}
-<br> Bongaukset: <br>
+<p>
+Bongaukset: <br>
 {% for sighting in list %} 
 
 {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date}}
 <br>
 
-<a href="/add">Lisää bongaus</a><br>
-
 {% endfor %} 
 <p>
+<a href="/add">Lisää bongaus</a><br>
 <a href="/logout">Kirjaudu ulos</a>
 
 {% else %}
