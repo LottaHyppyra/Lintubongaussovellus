@@ -33,5 +33,14 @@ def register(name, password):
         return False
     return login(name, password)
 
+def check_name(name):
+    try:
+        sql = text("SELECT name FROM users WHERE name=:name")
+        db.session.execute(sql, {"name":name})
+        db.session.commit()
+    except:
+        return False
+    return True
+
 def user_id():
     return session.get("user_id", 0)

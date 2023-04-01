@@ -32,6 +32,10 @@ def register():
 
     if request.method == "POST":
         name = request.form["name"]
+
+        if users.check_name(name):
+            return render_template("error.html", message="Käyttäjätunnus varattu")
+
         if len(name) < 1 or len(name) > 20:
             return render_template("error.html", message="Tunnuksen tulee olla 1-20 merkkiä pitkä")
 
