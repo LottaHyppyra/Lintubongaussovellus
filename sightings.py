@@ -2,11 +2,11 @@ from db import db
 from sqlalchemy.sql import text
 
 def get_all():
-    sql = text("SELECT species, location, date FROM sightings")
+    sql = text("SELECT species, location, date FROM sightings ORDER BY date ASC")
     return db.session.execute(sql).fetchall()
 
 def get_from_user(user_id):
-    sql = text("SELECT species, location, date FROM sightings WHERE user_id=:user_id")
+    sql = text("SELECT species, location, date FROM sightings WHERE user_id=:user_id ORDER BY date ASC")
     return db.session.execute(sql, {"user_id":user_id}).fetchall()
 
 def add(species, location, date, user_id):
