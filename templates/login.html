@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{%block content%}
+
+<p>
+    Kirjaudu sisään tai luo tunnus <a href="/register">täällä</a>.
+</p>
+
+<form action="/login" method="POST">
+Tunnus: <br><input type="text" name="name">
+<p>
+Salasana:  <br><input type="password" name="password">
+<p>
+<input type="submit" value="Kirjaudu">
+</form>
+
+{% endblock %}
