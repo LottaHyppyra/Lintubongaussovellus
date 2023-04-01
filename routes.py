@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect
 import users
+import sightings
 
 @app.route("/")
 def index():
@@ -45,3 +46,39 @@ def register():
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
 
         return redirect("/")
+    
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "GET":
+        return render_template("add.html")
+
+    if request.method == "POST":
+        species = request.form["species"]
+        if len(species) < 1 or len(species) > 20:
+            return render_template("error.html", message="Linnun lajin tulee olla 1-20 merkkiä pitkä.")
+
+        location = request.form["location"]
+        if len(location) < 1 or len(location) > 20:
+            return render_template("error.html", message="Paikan nimen tulee olla 1-20 merkkiä pitkä.")
+
+        date = request.form["date"]
+
+        sightings.add(species, location, date, users.user_id())
+        return redirect("/profile")
+
+app.route("/profile")
+def profile():
+    if request.method == "GET":
+        my_sightings = sightings.get_from_user(users.user_id())
+        return render_template("profile.html", list=my_sightings)
+
+@app.route("/all")
+def all():
+    if request.method == "GET":
+        return render_template("all.html", list=sightings.get_all())
+    
+@app.route("/profile")
+def profile():
+    if request.method == "GET":
+        my_sightings = sightings.get_from_user(users.user_id())
+        return render_template("profile.html", list=my_sightings)
