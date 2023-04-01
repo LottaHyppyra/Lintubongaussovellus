@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{%block content%}
+
+<h2>Profiili</h2>
+<p>
+{% if session.user_id %}
+Käyttäjänimi: {{ session.user_name }}
+<br> Bongaukset: <br>
+{% for sighting in list %} 
+
+{{ sighting.species }}, {{ sighting.location }}, {{ sighting.date}}
+<br>
+
+<a href="/add">Lisää bongaus</a><br>
+
+{% endfor %} 
+<p>
+<a href="/logout">Kirjaudu ulos</a>
+
+{% else %}
+Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a> ja aloita bongaus!
+{% endif %}
+
+{% endblock %}
