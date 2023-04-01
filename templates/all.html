@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{%block content%}
+
+<h2>Bongaukset</h2>
+
+{% for sighting in list %} 
+
+{{ sighting.species }}, {{ sighting.location }}, {{ sighting.date}}
+<br>
+
+{% endfor %} 
+
+
+
+{% endblock %}
