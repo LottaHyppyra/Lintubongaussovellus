@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{%block content%}
+
+{% if session.user_id %}
+
+<form action="/add" method="POST">
+
+<p>Linnun laji:<br>
+<input type="text" name="species" minlength="1" maxlength="20"></p>
+
+<p>Paikka:<br>
+<input type="text" name="location" minlength="1" maxlength="20"></p>
+
+<p>Päivämäärä: <br>
+<input type="date" name="date"/></p>
+
+<input type="submit" value="Lisää">
+
+
+</form>
+
+{% else %}
+Sinun täytyy olla kirjautunut sisään lisätäksesi bongauksia. <a href="/login">Kirjaudu sisään</a> ja aloita bongaus!
+{% endif %}
+
+{% endblock %}
