@@ -33,12 +33,12 @@ def register(name, password):
         return False
     return login(name, password)
 
+#return TRUE when username is taken
 def check_name(name):
-    try:
-        sql = text("SELECT name FROM users WHERE name=:name")
-        db.session.execute(sql, {"name":name})
-        db.session.commit()
-    except:
+    sql = text("SELECT name FROM users WHERE name=:name")
+    result = db.session.execute(sql, {"name":name})
+    name = result.fetchone()
+    if not name:
         return False
     return True
 
