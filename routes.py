@@ -1,7 +1,6 @@
 from app import app
 from flask import render_template, request, redirect
-import users
-import sightings
+import users, sightings, species
 
 @app.route("/")
 def index():
@@ -88,3 +87,8 @@ def profile():
     if request.method == "GET":
         my_sightings = sightings.get_from_user(users.user_id())
         return render_template("profile.html", list=my_sightings)
+    
+@app.route("/species")
+def list_species():
+    if request.method == "GET":
+        return render_template("species.html", all_species=species.get_all(), len_species=len(species.get_all()), len_families=len(species.get_families()))
