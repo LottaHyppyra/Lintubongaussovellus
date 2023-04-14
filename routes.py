@@ -33,6 +33,8 @@ def register():
     if request.method == "POST":
         name = request.form["name"]
 
+        admin_rights = users.check_if_empty()
+
         if users.check_name(name):
             return render_template("error.html", message="Käyttäjätunnus varattu")
 
@@ -46,7 +48,7 @@ def register():
         if password1 == "":
             return render_template("error.html", message="Salasana on tyhjä")
 
-        if not users.register(name, password1):
+        if not users.register(name, password1, admin_rights):
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
 
         return redirect("/")

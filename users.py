@@ -22,12 +22,12 @@ def logout():
     del session["user_id"]
     del session["user_name"]
 
-def register(name, password):
+def register(name, password, admin_rights):
     hash_value = generate_password_hash(password)
     sightings = 0
     try:
-        sql = text("INSERT INTO users (name, password, sightings) VALUES (:name, :password, :sightings)")
-        db.session.execute(sql, {"name":name, "password":hash_value, "sightings": sightings})
+        sql = text("INSERT INTO users (name, password, admin_rights sightings) VALUES (:name, :password, :admin_rights, :sightings)")
+        db.session.execute(sql, {"name":name, "password":hash_value, "admin_rights": admin_rights, "sightings": sightings})
         db.session.commit()
     except:
         return False
@@ -37,10 +37,17 @@ def register(name, password):
 def check_name(name):
     sql = text("SELECT name FROM users WHERE name=:name")
     result = db.session.execute(sql, {"name":name})
-    name = result.fetchone()
-    if not name:
+    account = result.fetchone()
+    if not account:
         return False
     return True
+
+#return TRUE if users is empty
+def check_if_empty():
+    sql = text("SELECT * FROM users")
+    result = db.session.execute(sql)
+    accounts = len(result.fetchall())
+    return accounts == 0
 
 def user_id():
     return session.get("user_id", 0)
