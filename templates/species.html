@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{%block content%}
+
+<h2>Linnut</h2>
+<p>
+Lintulajeja: {{ len_species }} <br>
+Heimoja: {{ len_families }}
+<br><br>
+{% for species in all_species %}
+
+<b>Nimi:</b> {{ species.name }} <b>Latinankielinen nimi:</b> {{ species.latin_name }} <b>Heimo:</b> {{ species.family }}
+<br>
+
+{% endfor %}
+
+{% endblock %}
