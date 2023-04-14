@@ -18,7 +18,7 @@ CREATE TABLE species (
     id SERIAL PRIMARY KEY,
     latin_name TEXT,
     name TEXT,
-    family_id INTEGER REFERENCES family
+    family TEXT
 );
 
 CREATE TABLE family (
