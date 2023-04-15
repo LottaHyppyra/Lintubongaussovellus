@@ -6,11 +6,11 @@ DONE:
 - Sivua ja muiden lisäämiä bongauksia voi tarkastella kirjautumatta sisään.
 - Käyttäjä voi rekisteröityä / kirjautua sisään tililleen.
 - Kirjautunut käyttäjä voi lisätä bongauksia.
+- Bongaukset voi järjestää ajan, paikan ja lajin perusteella.
 
 TO DO:
 - Peruskäyttäjä voi muokata ja poistaa aiempia bongauksiaan.
 - Ylläpitäjä voi muokata ja poistaa kaikkien lisäämiä bongauksia, sekä ylentää peruskäyttäjiä ylläpitäjiksi.
-- Bongauksia voi suodattaa ja järjestää ajan, paikan ja lajin perusteella.
 - Sivulta voi selvittää yleisimmin bongatut lajit ja ahkerimman lintubongarin.
 
 # Sovelluksen testaaminen paikallisesti
