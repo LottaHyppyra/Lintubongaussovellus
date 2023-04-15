@@ -4,6 +4,8 @@ import users, sightings, species
 
 @app.route("/")
 def index():
+    if species.is_empty():
+        species.add_species()
     return render_template("index.html")
 
 @app.route("/login", methods=["GET", "POST"])
