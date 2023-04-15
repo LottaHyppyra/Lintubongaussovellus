@@ -26,7 +26,7 @@ def register(name, password, admin_rights):
     hash_value = generate_password_hash(password)
     sightings = 0
     try:
-        sql = text("INSERT INTO users (name, password, admin_rights sightings) VALUES (:name, :password, :admin_rights, :sightings)")
+        sql = text("INSERT INTO users (name, password, admin_rights, sightings) VALUES (:name, :password, :admin_rights, :sightings)")
         db.session.execute(sql, {"name":name, "password":hash_value, "admin_rights": admin_rights, "sightings": sightings})
         db.session.commit()
     except:
