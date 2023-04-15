@@ -11,6 +11,10 @@ def get_all():
     sql = text("SELECT * FROM species")
     return db.session.execute(sql).fetchall()
 
+def get_names():
+    sql = text("SELECT name FROM species")
+    return db.session.execute(sql).fetchall()
+
 def get_families():
     sql = text("SELECT * FROM family")
     return db.session.execute(sql).fetchall()

@@ -6,7 +6,11 @@
 <form action="/add" method="POST">
 
 <p>Linnun laji:<br>
-<input type="text" name="species" minlength="1" maxlength="20"></p>
+<select type="text" name="species">
+    {% for species in list %}
+    <option value= {{ species.name }}> {{ species.name }} </option>
+    {% endfor %}
+</select>
 
 <p>Paikka:<br>
 <input type="text" name="location" minlength="1" maxlength="20"></p>

@@ -57,12 +57,11 @@ def register():
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "GET":
-        return render_template("add.html")
+        all_species = species.get_names()
+        return render_template("add.html", list=all_species)
 
     if request.method == "POST":
-        species = request.form["species"]
-        if len(species) < 1 or len(species) > 20:
-            return render_template("error.html", message="Linnun lajin tulee olla 1-20 merkkiä pitkä.")
+        name = request.form["species"]
 
         location = request.form["location"]
         if len(location) < 1 or len(location) > 20:
@@ -70,7 +69,7 @@ def add():
 
         date = request.form["date"]
 
-        sightings.add(species, location, date, users.user_id())
+        sightings.add(name, location, date, users.user_id())
         return redirect("/profile")
 
 app.route("/profile")
