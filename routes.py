@@ -85,7 +85,6 @@ def all():
     
     if request.method == "POST":
         order = request.form["order"]
-        print(order)
 
         if order == "date":
             return render_template("all.html", list=sightings.get_all_by_date())
