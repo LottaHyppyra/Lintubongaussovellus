@@ -78,10 +78,23 @@ def profile():
         my_sightings = sightings.get_from_user(users.user_id())
         return render_template("profile.html", list=my_sightings)
 
-@app.route("/all")
+@app.route("/all", methods=["GET", "POST"])
 def all():
     if request.method == "GET":
-        return render_template("all.html", list=sightings.get_all())
+        return render_template("all.html", list=sightings.get_all_by_date())
+    
+    if request.method == "POST":
+        order = request.form["order"]
+        print(order)
+
+        if order == "date":
+            return render_template("all.html", list=sightings.get_all_by_date())
+
+        if order == "species":
+            return render_template("all.html", list=sightings.get_all_by_name())
+
+        if order == "location":
+            return render_template("all.html", list=sightings.get_all_by_location())
     
 @app.route("/profile")
 def profile():

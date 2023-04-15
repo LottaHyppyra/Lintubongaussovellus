@@ -1,8 +1,16 @@
 from db import db
 from sqlalchemy.sql import text
 
-def get_all():
+def get_all_by_date():
     sql = text("SELECT species, location, date FROM sightings ORDER BY date ASC")
+    return db.session.execute(sql).fetchall()
+
+def get_all_by_name():
+    sql = text("SELECT species, location, date FROM sightings ORDER BY species ASC")
+    return db.session.execute(sql).fetchall()
+
+def get_all_by_location():
+    sql = text("SELECT species, location, date FROM sightings ORDER BY location ASC")
     return db.session.execute(sql).fetchall()
 
 def get_from_user(user_id):

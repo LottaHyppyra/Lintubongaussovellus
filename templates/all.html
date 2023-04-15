@@ -3,6 +3,18 @@
 
 <h2>Bongaukset</h2>
 
+<form action="/all" method="POST">
+    <p>Valitse järjestysperuste:</p>
+    <input type="radio" id="date" name="order" value="date">
+    <label for="date">Päivämäärä</label><br>
+    <input type="radio" id="species" name="order" value="species">
+    <label for="species">Laji</label><br>
+    <input type="radio" id="location" name="order" value="location">
+    <label for="location">Sijainti</label>
+  <p><input type="submit" value="Järjestä"></p>
+</form>
+
+<p>
 {% for sighting in list %} 
 
 {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date}}
