@@ -72,12 +72,6 @@ def add():
         sightings.add(name, location, date, users.user_id())
         return redirect("/profile")
 
-app.route("/profile")
-def profile():
-    if request.method == "GET":
-        my_sightings = sightings.get_from_user(users.user_id())
-        return render_template("profile.html", list=my_sightings)
-
 @app.route("/all", methods=["GET", "POST"])
 def all():
     if request.method == "GET":
@@ -95,11 +89,15 @@ def all():
         if order == "location":
             return render_template("all.html", list=sightings.get_all_by_location())
     
-@app.route("/profile")
+@app.route("/profile", methods=["GET", "POST"])
 def profile():
     if request.method == "GET":
-        my_sightings = sightings.get_from_user(users.user_id())
-        return render_template("profile.html", list=my_sightings)
+        return render_template("profile.html", list=sightings.get_from_user(users.user_id()), len_my_sightings=len(sightings.get_from_user(users.user_id())))
+    
+    if request.method == "POST":
+        sighting_id = request.form["species"]
+        sightings.delete(sighting_id)
+        return render_template("profile.html", list=sightings.get_from_user(users.user_id()), len_my_sightings=len(sightings.get_from_user(users.user_id())))
     
 @app.route("/species")
 def list_species():
@@ -109,11 +107,11 @@ def list_species():
 @app.route("/accounts", methods=["GET", "POST"])
 def accounts():
     if request.method == "GET":
-        return render_template("accounts.html", list=users.get_normal_accounts(), how_many_users = len(users.get_normal_accounts()))
+        return render_template("accounts.html", list=users.get_normal_accounts(), how_many_users=len(users.get_normal_accounts()))
     
     if request.method == "POST":
         account = request.form["user"]
         if account != None:
             users.give_admin_rights(account)
-            return render_template("accounts.html", list=users.get_normal_accounts(), how_many_users = len(users.get_normal_accounts()))
+            return render_template("accounts.html", list=users.get_normal_accounts(), how_many_users=len(users.get_normal_accounts()))
 

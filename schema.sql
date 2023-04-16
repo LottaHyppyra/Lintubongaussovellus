@@ -11,7 +11,8 @@ CREATE TABLE sightings (
     species TEXT,
     location TEXT,
     date DATE,
-    user_id INTEGER REFERENCES users
+    user_id INTEGER REFERENCES users,
+    visible BOOLEAN
 );
 
 CREATE TABLE species (

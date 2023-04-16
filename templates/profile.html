@@ -19,13 +19,35 @@ Oikeudet: Peruskäyttäjä
 {% endif %} 
 
 <p>
+
+{% if len_my_sightings > 0 %}
+
 Bongaukset: <br>
 {% for sighting in list %} 
 
 {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }}
 <br>
 
-{% endfor %} 
+{% endfor %}
+
+<form action="/profile" method="POST">
+
+    <p>Valitse bongaus:<br>
+    <select type="text" name="species">
+        {% for sighting in list %}
+        <option value= {{ sighting.id }}> {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }} </option>
+        {% endfor %}
+    </select>
+    
+    <input type="submit" value="Poista">
+    
+</form>
+
+{% else %}
+
+Ei vielä bongauksia.
+
+{% endif %}
 
 <p>
 <a href="/add">Lisää bongaus</a><br>
