@@ -2,15 +2,15 @@ from db import db
 from sqlalchemy.sql import text
 
 def get_all_by_date():
-    sql = text("SELECT species, location, date FROM sightings WHERE visible=TRUE ORDER BY date ASC")
+    sql = text("SELECT id, species, location, date FROM sightings WHERE visible=TRUE ORDER BY date ASC")
     return db.session.execute(sql).fetchall()
 
 def get_all_by_name():
-    sql = text("SELECT species, location, date FROM sightings WHERE visible=TRUE ORDER BY species ASC")
+    sql = text("SELECT id, species, location, date FROM sightings WHERE visible=TRUE ORDER BY species ASC")
     return db.session.execute(sql).fetchall()
 
 def get_all_by_location():
-    sql = text("SELECT species, location, date FROM sightings WHERE visible=TRUE ORDER BY location ASC")
+    sql = text("SELECT id, species, location, date FROM sightings WHERE visible=TRUE ORDER BY location ASC")
     return db.session.execute(sql).fetchall()
 
 def get_from_user(user_id):

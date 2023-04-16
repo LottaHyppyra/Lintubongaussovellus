@@ -9,7 +9,7 @@
 
 {% if how_many_users > 0 %}
 
-<p>Ylläpitäjänä voit ylentää muita peruskäyttäjiä ylläpitäjiksi. 
+<p>Ylläpitäjänä voit ylentää muita peruskäyttäjiä ylläpitäjiksi ja poistaa bongauksia. 
 <br>Valitse käyttäjä listasta:</p>
 
 <form action="/accounts" method="POST">
@@ -24,7 +24,28 @@
 
 {% else %}
 
-Ei ylennettäviä käyttäjiä.
+<p>Ei ylennettäviä käyttäjiä.</p>
+
+{% endif %}
+
+{% if len_sightings > 0 %}
+
+<form action="/remove" method="POST">
+
+    <p>Valitse bongaus:<br>
+    <select type="text" name="species">
+        {% for sighting in all_sightings %}
+        <option value= {{ sighting.id }}> {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }} </option>
+        {% endfor %}
+    </select>
+    
+    <input type="submit" value="Poista">
+    
+</form>
+
+{% else %}
+
+<p>Ei bongauksia.</p>
 
 {% endif %}
 
