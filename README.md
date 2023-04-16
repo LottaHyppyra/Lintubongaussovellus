@@ -8,10 +8,11 @@ DONE:
 - Kirjautunut käyttäjä voi lisätä bongauksia.
 - Bongaukset voi järjestää ajan, paikan ja lajin perusteella.
 - Etusivulta näkee yleisimmin bongatun lajin ja ahkerimman lintubongarin.
+- Ylläpitäjät voivat ylentää peruskäyttäjiä ylläpitäjiksi.
 
 TO DO:
 - Peruskäyttäjä voi muokata ja poistaa aiempia bongauksiaan.
-- Ylläpitäjä voi muokata ja poistaa kaikkien lisäämiä bongauksia, sekä ylentää peruskäyttäjiä ylläpitäjiksi.
+- Ylläpitäjä voi muokata ja poistaa kaikkien lisäämiä bongauksia.
 
 # Sovelluksen testaaminen paikallisesti
 
