@@ -13,8 +13,8 @@ DONE:
 - Ylläpitäjä voi poistaa kaikkien bongauksia (profiili -> hallitse käyttäjätunnuksia).
 
 LOPPUPALAUTUKSEEN:
-- Sivujen ulkoasu.
-- Lisää tietokantoja.
+- Sivujen ulkoasu -> ulkonäkö, selkeys, lisää tekstiä.
+- Lisää tietokantoja -> uusia tietokantoja ja niiden järkevä hyödyntäminen, nykyisten tietokantojen parantelu.
 
 # Sovelluksen testaaminen paikallisesti
 
