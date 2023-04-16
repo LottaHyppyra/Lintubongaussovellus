@@ -25,6 +25,10 @@ def count_all():
     sql = text("SELECT COUNT(*) all FROM sightings")
     return db.session.execute(sql).fetchone()
 
+def most_sightings():
+    sql = text("SELECT U.name, COUNT(S.species) total FROM Users U LEFT JOIN Sightings S ON U.id=S.user_id GROUP BY U.name ORDER BY total DESC")
+    return db.session.execute(sql).fetchone()
+
 def add(species, location, date, user_id):
     try:
         sql = text("INSERT INTO sightings (species, location, date, user_id) VALUES (:species, :location, :date, :user_id)")

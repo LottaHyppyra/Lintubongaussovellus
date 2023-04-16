@@ -6,7 +6,7 @@ import users, sightings, species
 def index():
     if species.is_empty():
         species.add_species()
-    return render_template("index.html", most_common=sightings.get_most_common_species(), all=sightings.count_all())
+    return render_template("index.html", most_common=sightings.get_most_common_species(), all=sightings.count_all(), user=sightings.most_sightings())
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
