@@ -51,5 +51,15 @@ def check_if_empty():
     accounts = len(result.fetchall())
     return accounts == 0
 
+def get_normal_accounts():
+    admin_rights = False
+    sql = text("SELECT id, name FROM users WHERE admin_rights=:admin_rights")
+    return db.session.execute(sql, {"admin_rights":admin_rights}).fetchall()
+
+def give_admin_rights(user_id):
+    sql = text("UPDATE users SET admin_rights=TRUE WHERE id=:user_id")
+    db.session.execute(sql, {"user_id":user_id})
+    db.session.commit()
+
 def user_id():
     return session.get("user_id", 0)

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{%block content%}
+
+<h2>Käyttäjien hallinta</h2>
+<p>
+{% if session.user_id %}
+
+{% if session.user_admin_rights %}
+
+{% if how_many_users > 0 %}
+
+<p>Ylläpitäjänä voit ylentää muita peruskäyttäjiä ylläpitäjiksi. 
+<br>Valitse käyttäjä listasta:</p>
+
+<form action="/accounts" method="POST">
+<select type="text" name="user">
+    {% for user in list %}
+    <option value= {{ user.id }}> {{ user.name }} </option>
+    {% endfor %}
+</select>
+
+<input type="submit" value="Ylennä">
+</form>
+
+{% else %}
+
+Ei ylennettäviä käyttäjiä.
+
+{% endif %}
+
+{% else %}
+
+Et ole ylläpitäjä.
+
+{% endif %}
+
+{% else %}
+
+Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a>!
+
+{% endif %}
+
+{% endblock %}

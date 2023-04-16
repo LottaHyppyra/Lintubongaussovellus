@@ -105,3 +105,15 @@ def profile():
 def list_species():
     if request.method == "GET":
         return render_template("species.html", all_species=species.get_all(), len_species=len(species.get_all()), len_families=len(species.get_families()))
+    
+@app.route("/accounts", methods=["GET", "POST"])
+def accounts():
+    if request.method == "GET":
+        return render_template("accounts.html", list=users.get_normal_accounts(), how_many_users = len(users.get_normal_accounts()))
+    
+    if request.method == "POST":
+        account = request.form["user"]
+        if account != None:
+            users.give_admin_rights(account)
+            return render_template("accounts.html", list=users.get_normal_accounts(), how_many_users = len(users.get_normal_accounts()))
+
