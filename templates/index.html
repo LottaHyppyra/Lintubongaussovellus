@@ -12,4 +12,7 @@ Olet kirjautunut sisään nimellä <b>{{ session.user_name }}.</b>
 Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a> ja aloita bongaus!
 {% endif %}
 
+<p>Lintuja bongattu: {{ all.all }}
+<br>Bongatuin lintu: {{ most_common.species }}</p>
+
 {% endblock %}

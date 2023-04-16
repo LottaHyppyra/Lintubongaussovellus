@@ -17,6 +17,14 @@ def get_from_user(user_id):
     sql = text("SELECT species, location, date FROM sightings WHERE user_id=:user_id ORDER BY date ASC")
     return db.session.execute(sql, {"user_id":user_id}).fetchall()
 
+def get_most_common_species():
+    sql = text("SELECT species, COUNT(*) amount FROM sightings GROUP BY species ORDER BY amount DESC")
+    return db.session.execute(sql).fetchone()
+
+def count_all():
+    sql = text("SELECT COUNT(*) all FROM sightings")
+    return db.session.execute(sql).fetchone()
+
 def add(species, location, date, user_id):
     try:
         sql = text("INSERT INTO sightings (species, location, date, user_id) VALUES (:species, :location, :date, :user_id)")
