@@ -2,7 +2,6 @@
 
 Lintubongaussovellus on sivusto, johon käyttäjät voivat rekisteröityä ja lisätä lintubongauksiaan. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä. 
 
-DONE:
 - Sivua ja muiden lisäämiä bongauksia voi tarkastella kirjautumatta sisään.
 - Käyttäjä voi rekisteröityä / kirjautua sisään tililleen.
 - Kirjautunut käyttäjä voi lisätä bongauksia.
