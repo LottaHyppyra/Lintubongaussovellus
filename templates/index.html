@@ -2,16 +2,15 @@
 {%block content%}
 
     <h2>Tervetuloa lintubongaussovellukseen!</h2>
-    <p>
+    <p>Lintubongausovelluksessa voit lisätä bongauksia bongaamistasi linnuista ja tarkastella muiden bongauksia.</p>
 
     {% if session.user_id %}
 
         Olet kirjautunut sisään nimellä <b>{{ session.user_name }}.</b>
         <p>
-        <a href="/add">Lisää bongaus</a><br>
-        <a href="/logout">Kirjaudu ulos</a>
+        <a href="/add"><b>Lisää bongaus</b></a><br>
 
-        <p>Sinua kiinnostavat havainnot:</p>
+        <p><b>Sinua kiinnostavat havainnot:</b></p>
 
         {% for sighting in followed %}
 
@@ -26,8 +25,9 @@
         
     {% endif %}
 
-    <p>Lintuja bongattu: {{ all.all }}
-    <br>Bongatuin lintu: {{ most_common.species }}
-    <br>Ahkerin lintubongari: {{ user.name }}</p>
+
+    <p><b>Lintuja bongattu:</b> {{ all.all }}
+    <br><b>Bongatuin lintu:</b> {{ most_common.species }}
+    <br><b>Ahkerin lintubongari:</b> {{ user.name }}</p>
 
 {% endblock %}

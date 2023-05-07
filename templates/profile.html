@@ -4,23 +4,22 @@
 <h2>Profiili</h2>
 <p>
     {% if session.user_id %}
-    Käyttäjänimi: {{ session.user_name }}
+    <b>Käyttäjänimi:</b> {{ session.user_name }}<br>
 
         {% if session.user_admin_rights %}
 
-        <p>Oikeudet: Ylläpitäjä
+        <p><b>Oikeudet:</b> Ylläpitäjä
         <br>Hallitse käyttäjätunnuksia <a href="/accounts">tästä</a>.
 
         {% else %}
 
-        Oikeudet: Peruskäyttäjä</p>
+        <b>Oikeudet:</b> Peruskäyttäjä</p>
 
         {% endif %}
 
-        <p>Valitse laji, jonka havaintoja haluat seurata:</p>
         <form action="/add_follow" method="POST">
 
-            <p>Linnun laji:<br>
+            <p>Valitse tästä laji, jonka havaintoja haluat seurata:<br>
             <select type="text" name="species">
                 {% for species in species_list %}
                 <option value= {{ species.name }}> {{ species.name }} </option>
@@ -33,7 +32,7 @@
 
         {% if len_my_sightings > 0 %}
 
-        Bongaukset: <br>
+        <b>Omat bongaukset:</b> <br>
         {% for sighting in list %} 
 
         {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }}
@@ -43,7 +42,7 @@
 
         <form action="/profile" method="POST">
 
-            <p>Valitse bongaus:<br>
+            <p>Poista bongaus:<br>
             <select type="text" name="species">
                 {% for sighting in list %}
                 <option value= {{ sighting.id }}> {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }} </option>
