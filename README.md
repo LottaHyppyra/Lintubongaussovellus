@@ -11,10 +11,7 @@ DONE:
 - Ylläpitäjät voivat ylentää peruskäyttäjiä ylläpitäjiksi.
 - Peruskäyttäjä voi poistaa bongauksiaan profiilissaan.
 - Ylläpitäjä voi poistaa kaikkien bongauksia (profiili -> hallitse käyttäjätunnuksia).
-
-LOPPUPALAUTUKSEEN:
-- Sivujen ulkoasu -> ulkonäkö, selkeys, lisää tekstiä.
-- Lisää tietokantoja -> uusia tietokantoja ja niiden järkevä hyödyntäminen, nykyisten tietokantojen parantelu.
+- Käyttäjät voivat seurata eri lintuja ja nähdä kyseisten lajien bongaukset etusivulla.
 
 # Sovelluksen testaaminen paikallisesti
 
