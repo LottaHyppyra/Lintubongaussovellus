@@ -1,19 +1,33 @@
 {% extends "layout.html" %}
 {%block content%}
 
-<h2>Tervetuloa lintubongaussovellukseen!</h2>
-<p>
-{% if session.user_id %}
-Olet kirjautunut sisään nimellä <b>{{ session.user_name }}.</b>
-<p>
-<a href="/add">Lisää bongaus</a><br>
-<a href="/logout">Kirjaudu ulos</a>
-{% else %}
-Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a> ja aloita bongaus!
-{% endif %}
+    <h2>Tervetuloa lintubongaussovellukseen!</h2>
+    <p>
 
-<p>Lintuja bongattu: {{ all.all }}
-<br>Bongatuin lintu: {{ most_common.species }}
-<br>Ahkerin lintubongari: {{ user.name }}</p>
+    {% if session.user_id %}
+
+        Olet kirjautunut sisään nimellä <b>{{ session.user_name }}.</b>
+        <p>
+        <a href="/add">Lisää bongaus</a><br>
+        <a href="/logout">Kirjaudu ulos</a>
+
+        <p>Sinua kiinnostavat havainnot:</p>
+
+        {% for sighting in followed %}
+
+        {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date}}
+        <br>
+
+        {% endfor %}
+
+    {% else %}
+
+        Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a> ja aloita bongaus!
+        
+    {% endif %}
+
+    <p>Lintuja bongattu: {{ all.all }}
+    <br>Bongatuin lintu: {{ most_common.species }}
+    <br>Ahkerin lintubongari: {{ user.name }}</p>
 
 {% endblock %}

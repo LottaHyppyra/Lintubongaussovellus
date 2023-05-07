@@ -6,7 +6,8 @@ import users, sightings, species
 def index():
     if species.is_empty():
         species.add_species()
-    return render_template("index.html", most_common=sightings.get_most_common_species(), all=sightings.count_all(), user=sightings.most_sightings())
+
+    return render_template("index.html", most_common=sightings.get_most_common_species(), all=sightings.count_all(), user=sightings.most_sightings(), followed=sightings.get_follows(users.user_id()))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -92,12 +93,12 @@ def all():
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     if request.method == "GET":
-        return render_template("profile.html", list=sightings.get_from_user(users.user_id()), len_my_sightings=len(sightings.get_from_user(users.user_id())))
+        return render_template("profile.html", list=sightings.get_from_user(users.user_id()), len_my_sightings=len(sightings.get_from_user(users.user_id())), species_list=species.get_names())
     
     if request.method == "POST":
         sighting_id = request.form["species"]
         sightings.delete(sighting_id)
-        return render_template("profile.html", list=sightings.get_from_user(users.user_id()), len_my_sightings=len(sightings.get_from_user(users.user_id())))
+        return render_template("profile.html", list=sightings.get_from_user(users.user_id()), len_my_sightings=len(sightings.get_from_user(users.user_id())), species_list=species.get_names())
     
 @app.route("/species")
 def list_species():
@@ -120,4 +121,11 @@ def remove():
         sighting_id = request.form["species"]
         sightings.delete(sighting_id)
         return render_template("accounts.html", list=users.get_normal_accounts(), how_many_users=len(users.get_normal_accounts()), all_sightings=sightings.get_all_by_date(), len_sightings=len(sightings.get_all_by_date()))
+
+@app.route("/add_follow", methods=["POST"])
+def add_follow():
+    if request.method == "POST":
+        name = request.form["species"]
+        users.add_follow(name, users.user_id())
+        return render_template("profile.html", list=sightings.get_from_user(users.user_id()), len_my_sightings=len(sightings.get_from_user(users.user_id())), species_list=species.get_names())
 

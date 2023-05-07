@@ -26,3 +26,10 @@ CREATE TABLE family (
     id SERIAL PRIMARY KEY,
     name TEXT
 );
+
+CREATE TABLE followed_species (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    species TEXT,
+    UNIQUE (user_id, species)
+)

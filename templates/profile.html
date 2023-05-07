@@ -3,58 +3,70 @@
 
 <h2>Profiili</h2>
 <p>
-{% if session.user_id %}
-Käyttäjänimi: {{ session.user_name }}
-<p>
+    {% if session.user_id %}
+    Käyttäjänimi: {{ session.user_name }}
 
-{% if session.user_admin_rights %}
+        {% if session.user_admin_rights %}
 
-Oikeudet: Ylläpitäjä
-<br>Hallitse käyttäjätunnuksia <a href="/accounts">tästä</a>.
+        <p>Oikeudet: Ylläpitäjä
+        <br>Hallitse käyttäjätunnuksia <a href="/accounts">tästä</a>.
 
-{% else %}
+        {% else %}
 
-Oikeudet: Peruskäyttäjä
+        Oikeudet: Peruskäyttäjä</p>
 
-{% endif %} 
+        {% endif %}
 
-<p>
+        <p>Valitse laji, jonka havaintoja haluat seurata:</p>
+        <form action="/add_follow" method="POST">
 
-{% if len_my_sightings > 0 %}
+            <p>Linnun laji:<br>
+            <select type="text" name="species">
+                {% for species in species_list %}
+                <option value= {{ species.name }}> {{ species.name }} </option>
+                {% endfor %}
+            </select>
+            
+            <input type="submit" value="Lisää">
+            
+        </form>
 
-Bongaukset: <br>
-{% for sighting in list %} 
+        {% if len_my_sightings > 0 %}
 
-{{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }}
-<br>
+        Bongaukset: <br>
+        {% for sighting in list %} 
 
-{% endfor %}
+        {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }}
+        <br>
 
-<form action="/profile" method="POST">
-
-    <p>Valitse bongaus:<br>
-    <select type="text" name="species">
-        {% for sighting in list %}
-        <option value= {{ sighting.id }}> {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }} </option>
         {% endfor %}
-    </select>
-    
-    <input type="submit" value="Poista">
-    
-</form>
 
-{% else %}
+        <form action="/profile" method="POST">
 
-Ei vielä bongauksia.
+            <p>Valitse bongaus:<br>
+            <select type="text" name="species">
+                {% for sighting in list %}
+                <option value= {{ sighting.id }}> {{ sighting.species }}, {{ sighting.location }}, {{ sighting.date }} </option>
+                {% endfor %}
+            </select>
+            
+            <input type="submit" value="Poista">
+            
+        </form>
 
-{% endif %}
+        {% else %}
 
-<p>
-<a href="/add">Lisää bongaus</a><br>
-<a href="/logout">Kirjaudu ulos</a>
+        Ei vielä bongauksia.
 
-{% else %}
-Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a> ja aloita bongaus!
-{% endif %}
+        {% endif %}
+
+    <p>
+    <a href="/add">Lisää bongaus</a><br>
+    <a href="/logout">Kirjaudu ulos</a>
+
+    {% else %}
+
+    Et ole kirjautunut sisään. <a href="/login">Kirjaudu sisään</a> ja aloita bongaus!
+    {% endif %}
 
 {% endblock %}

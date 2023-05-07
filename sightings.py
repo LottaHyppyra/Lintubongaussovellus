@@ -41,3 +41,7 @@ def delete(sighting_id):
     sql = text("UPDATE sightings SET visible=FALSE WHERE id=:sighting_id")
     db.session.execute(sql, {"sighting_id":sighting_id})
     db.session.commit()
+
+def get_follows(user_id):
+    sql = text("SELECT S.species, S.location, S.date FROM Sightings S, followed_species F WHERE S.species = F.species AND F.user_id=:user_id")
+    return db.session.execute(sql, {"user_id":user_id}).fetchall()

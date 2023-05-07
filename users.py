@@ -63,3 +63,15 @@ def give_admin_rights(user_id):
 
 def user_id():
     return session.get("user_id", 0)
+
+def add_follow(species, user_id):
+    try:
+        sql = text("INSERT INTO followed_species (user_id, species) VALUES (:user_id, :species) ON CONFLICT DO NOTHING")
+        db.session.execute(sql, {"user_id":user_id, "species":species})
+        db.session.commit()
+    except:
+        return False
+    
+def get_follows_from_user(user_id):
+    sql = text("SELECT species FROM followed_species WHERE user_id=:user_id")
+    return db.session.execute(sql, {"user_id":user_id}).fetchall()
